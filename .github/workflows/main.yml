@@ -1,7 +1,7 @@
 name: tweet-once-a-day
 on:
   schedule:
-  - cron: '0 21 * * *'
+  - cron: '10 21 * * *'
 
 jobs:
   job1:
@@ -19,7 +19,6 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
       - name: Run python script
-        run: python3 tweet-scheduler.py
         env:
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
           CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
@@ -27,3 +26,4 @@ jobs:
           TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
           AIRTABLE_BASE: ${{ secrets.AIRTABLE_BASE }}
           AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
+        run: python3 tweet-scheduler.py 
