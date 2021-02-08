@@ -1,0 +1,23 @@
+name: tweet-once-a-day
+
+on:
+  schedule:
+    - cron: "10 20 * * *"
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with: 
+          python-version: '3.x'
+      - run: pip install -r requirements.txt
+      - run: python3 tweet-scheduler.py
+        env:
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          TOKEN: ${{ secrets.TOKEN }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          AIRTABLE_BASE: ${{ secrets.AIRTABLE_BASE }}
+          AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
