@@ -1,7 +1,7 @@
 name: tweet-once-a-day
 on:
   schedule:
-  - cron: '15 2 * * *'
+  - cron: '21 21 * * *'
 
 env:
   CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
@@ -29,7 +29,7 @@ jobs:
         run: |
           from twitter import *
           from airtable import airtable
-          at = airtable.Airtable( ${{ env.AIRTABLE_BASE }}, ${{ env.AIRTABLE_KEY }} )
+          at = airtable.Airtable( str(${{ env.AIRTABLE_BASE }}), str(${{ env.AIRTABLE_KEY }}) )
           t = Twitter(auth=OAuth(${{ env.TOKEN }}, ${{ env.TOKEN_SECRET }}, ${{ env.CONSUMER_KEY }}, ${{ env.CONSUMER_SECRET}}))
           at = airtable.Airtable(${{ env.AIRTABLE_BASE }}, ${{ env.AIRTABLE_KEY }})
           result = at.get(table_name='Tweets',max_records=1,view="Today")
