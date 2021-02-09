@@ -3,14 +3,6 @@ on: push
         #  schedule:
         #  - cron: '21 21 * * *'
 
-env:
-  CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-  CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-  TOKEN: ${{ secrets.TOKEN }}
-  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
-  AIRTABLE_BASE: ${{ secrets.AIRTABLE_BASE }}
-  AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
-
 jobs:
   job1:
     name: run-scheduler 
