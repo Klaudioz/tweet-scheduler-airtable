@@ -25,13 +25,11 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
       - name: Run python script
-        shell: python
-        run: |
-          from twitter import *
-          from airtable import airtable
-          at = airtable.Airtable( str(${{ env.AIRTABLE_BASE }}), str(${{ env.AIRTABLE_KEY }}) )
-          t = Twitter(auth=OAuth(${{ env.TOKEN }}, ${{ env.TOKEN_SECRET }}, ${{ env.CONSUMER_KEY }}, ${{ env.CONSUMER_SECRET}}))
-          at = airtable.Airtable(${{ env.AIRTABLE_BASE }}, ${{ env.AIRTABLE_KEY }})
-          result = at.get(table_name='Tweets',max_records=1,view="Today")
-          tweet = result['records'][0]['fields']['Tweet']
-          t.statuses.update(status=tweet)
+        env:
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          TOKEN: ${{ secrets.TOKEN }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          AIRTABLE_BASE: ${{ secrets.AIRTABLE_BASE }}
+          AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
+        run: python3 tweet-scheduler.py
