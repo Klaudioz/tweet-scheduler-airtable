@@ -14,6 +14,9 @@ t = Twitter(auth=OAuth(TOKEN, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET))
 at = airtable.Airtable(AIRTABLE_BASE, AIRTABLE_KEY)
 
 result = at.get(table_name='Tweets',max_records=1,view="Today")
-tweet = result['records'][0]['fields']['Tweet']
-
+try:
+  tweet = result['records'][0]['fields']['Tweet']
+except IndexError as error:
+  print(IndexError)
+  
 t.statuses.update(status=tweet)
