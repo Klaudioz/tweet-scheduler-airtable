@@ -17,5 +17,5 @@ result = at.get(table_name='Tweets',max_records=1,view="Today")
 try:
   tweet = result['records'][0]['fields']['Tweet']
   t.statuses.update(status=tweet)
-except IndexError as error:
-  print(IndexError)
+except Exception as e:
+  print(e)
