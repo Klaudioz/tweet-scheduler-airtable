@@ -1,7 +1,7 @@
 name: tweet-once-a-day
-on:
-  schedule:
-  - cron: '21 21 * * *'
+on: push
+        #  schedule:
+        #  - cron: '21 21 * * *'
 
 env:
   CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
