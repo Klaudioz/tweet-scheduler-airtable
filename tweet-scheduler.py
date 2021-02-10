@@ -1,8 +1,5 @@
 import os
-import urllib
 import tweepy
-import requests
-from twitter import *
 from airtable import airtable
 
 # Get secrets from environment variables
