@@ -1,5 +1,6 @@
 import os
 import tweepy
+import requests
 from airtable import airtable
 
 # Get secrets from environment variables
