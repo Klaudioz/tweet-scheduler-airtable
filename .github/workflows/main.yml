@@ -1,7 +1,7 @@
 name: tweet-once-a-day
 on:
   schedule:
-  - cron: '55 23 * * *'
+  - cron: '00 21 * * *'
 
 jobs:
   job1:
